@@ -20,10 +20,12 @@ celebrar:
   english: 'to celebrate'
 cerrar:
   english: 'to close'
+  presente_root_transform: e/ie
 cocinar:
   english: 'to cook'
 comenzar:
   english: 'to start'
+  presente_root_transform: e/ie
 comer:
   english: 'to eat'
 comprar:
@@ -40,12 +42,20 @@ creer:
   english: 'to believe'
 dar:
   english: 'to give'
+  presente:
+    - doy
 decir:
   english: 'to say/tell'
+  presente_root: dec
+  presente_root_transform: e/i
+  presente:
+    0: digo
+    4: decís
 descansar:
   english: 'to rest'
 despertar:
   english: 'to wake up'
+  presente_root_transform: e/ie2
 disfrutar:
   english: 'to enjoy'
 dormir:
@@ -64,12 +74,25 @@ escuchar:
   english: 'to listen'
 estar:
   english: 'to be - temporary'
+  presente:
+    - estoy
+  preterito_indefinido:
+    - estuve
+    - estuviste
+    - estuvo
+    - estuvimos
+    - estuvisteis
+    - estuvieron
 gustar:
   english: 'to like'
 hablar:
   english: 'to speak'
 hacer:
   english: 'to do/make'
+  presente:
+    0: hago
+    3: hacemos
+    4: hacéis
 invitar:
   english: 'to invite'
 jugar:
@@ -85,6 +108,7 @@ mirar:
   english: 'to watch/look at'
 mostrar:
   english: 'to show'
+  presente_root_transform: o/ue
 mover:
   english: 'to move'
 necesitar:
@@ -93,6 +117,7 @@ pasar:
   english: 'to pass/spend time'
 pensar:
   english: 'to think'
+  presente_root_transform: e/ie
 pescar:
   english: 'to fish'
 poder:
@@ -110,16 +135,30 @@ querer:
     2: quiso
 saber:
   english: 'to know - facts/information'
+  presente:
+    0: sé
+    3: sabemos
+    4: sabéis
 salir:
   english: 'to leave/go out'
 saltar:
   english: 'to jump'
 seguir:
   english: 'to follow'
+  presente:
+    - sigo
 sentir:
   english: 'to feel'
+  presente_root_transform: e/ie
 tener:
   english: 'to have'
+  presente_root_transform: e/ie
+  presente:
+    0: tengo
+    4: teneis
+  preterito_indefinido_root: tuv
+  preterito_indefinido:
+    0: tuve
 terminar:
   english: 'to finish'
 trabajar:
@@ -132,6 +171,9 @@ vender:
   english: 'to sell'
 venir:
   english: 'to come'
+  presente_root_transform: e/ie
+  presente:
+    - vengo
 ver:
   english: 'to see'
 viajar:
@@ -185,6 +227,8 @@ ir:
     - ibamos
     - ibais
     - iban
+  continuous_form:
+    - yendo
 reír:
   english: 'to laugh'
   presente:

@@ -9,13 +9,24 @@ const replacing_first = (f, t, not) =>
     return arr;
   };
     
+const replacing_last = (f, t, not) =>
+  (root) => {
+    let idx = root.lastIndexOf(f);
+    let repl = root.substr(0, idx) + t + root.substr(idx + f.length);
+    let arr = Array(6).fill(repl);
+    not.forEach(i => arr[i] = root);
+    return arr;
+  };
 
 const TRANSFORMS = {
   'none': (root) => Array(6).fill(root),
-  'o/ue': replacing_first('o', 'ue', [3, 4]),
-  'ue/uie': replacing_first('ue', 'uie', [3, 4]),
+  'e/i': replacing_first('e', 'i', [3, 4]),
+  'e/ie': replacing_first('e', 'ie', [3, 4]),
+  'e/ie2': replacing_last('e', 'ie', [3, 4]),
   'o/u': replacing_first('o', 'ue', [2, 5]),
+  'o/ue': replacing_first('o', 'ue', [3, 4]),
   'u/ue': replacing_first('u', 'ue', [3, 4]),
+  'ue/uie': replacing_first('ue', 'uie', [3, 4]),
 };
 
 
@@ -64,6 +75,7 @@ const CONJES = {
 
 const fill = (verb, conj) => {
   if (!conj) { conj = {}; }
+  conj.filled = true;
   let root = verb.substr(0, verb.length - 2);
   let type = verb.substr(verb.length - 2);
   let reflexive = type == 'se';
@@ -83,6 +95,9 @@ const fill = (verb, conj) => {
       let conjugations = append(roots, CONJES[type][tense], reflexive);
       if (!conj[tense]) { conj[tense] = Array(6).fill(null); }
       conj[tense] = conjugations.map((c, i) => conj[tense][i] || c);
+      if (tense.includes('continuous') && conj.continuous_form) {
+        conj[tense] = conj[tense].map(c => c.split(' ')[0] + ' ' + conj.continuous_form);
+      }
     } 
   }
   return conj;
@@ -91,12 +106,12 @@ const fill = (verb, conj) => {
 const to_idx = (person, plural) => +person + (plural == 'singular' ? 0 : 3);
 
 const loaded = data => {
-  let words = Object.keys(data);
-  for (let word of words) {
-    data[word] = fill(word, data[word]);
-  }
+  window.conjugations = data;
   let current_word;
   let update = () => {
+    if (!data[current_word].filled) {
+      data[current_word] = fill(current_word, data[current_word]);
+    }
     let person = $('input[name="person"]:checked').value;
     let plurality = $('input[name="plurality"]:checked').value;
     let idx = to_idx(person, plurality);
@@ -111,6 +126,7 @@ const loaded = data => {
     current_word = w;
     update();
   }
+  let words = Object.keys(data);
   let randomise = () => {
     let idx = Math.floor(Math.random() * words.length);
     current_word = words[idx];
