@@ -1,0 +1,198 @@
+abrir:
+  english: 'to open'
+aprender:
+  english: 'to learn'
+ayudar:
+  english: 'to help'
+bailar:
+  english: 'to dance'
+beber:
+  english: 'to drink'
+buscar:
+  english: 'to search/look for'
+caminar:
+  english: 'to walk'
+cantar:
+  english: 'to sing'
+celebrar:
+  english: 'to celebrate'
+cerrar:
+  english: 'to close'
+cocinar:
+  english: 'to cook'
+comenzar:
+  english: 'to start'
+comer:
+  english: 'to eat'
+comprar:
+  english: 'to buy'
+conocer:
+  english: 'to know - people/places'
+contar:
+  english: 'to count/tell'
+contestar:
+  english: 'to answer'
+correr:
+  english: 'to run'
+creer:
+  english: 'to believe'
+dar:
+  english: 'to give'
+decir:
+  english: 'to say/tell'
+descansar:
+  english: 'to rest'
+despertar:
+  english: 'to wake up'
+disfrutar:
+  english: 'to enjoy'
+dormir:
+  english: 'to sleep'
+encontrar:
+  english: 'to find'
+enseñar:
+  english: 'to teach'
+enviar:
+  english: 'to send'
+escribir:
+  english: 'to write'
+escuchar:
+  english: 'to listen'
+estar:
+  english: 'to be - temporary'
+gustar:
+  english: 'to like'
+hablar:
+  english: 'to speak'
+hacer:
+  english: 'to do/make'
+invitar:
+  english: 'to invite'
+jugar:
+  english: 'to play'
+leer:
+  english: 'to read'
+limpiar:
+  english: 'to clean'
+llorar:
+  english: 'to cry'
+mirar:
+  english: 'to watch/look at'
+mostrar:
+  english: 'to show'
+mover:
+  english: 'to move'
+necesitar:
+  english: 'to need'
+pasar:
+  english: 'to pass/spend time'
+pensar:
+  english: 'to think'
+pescar:
+  english: 'to fish'
+poder:
+  english: 'to be able/can'
+preguntar:
+  english: 'to ask'
+quedar:
+  english: 'to stay/remain'
+saber:
+  english: 'to know - facts/information'
+salir:
+  english: 'to leave/go out'
+saltar:
+  english: 'to jump'
+seguir:
+  english: 'to follow'
+sentir:
+  english: 'to feel'
+tener:
+  english: 'to have'
+terminar:
+  english: 'to finish'
+trabajar:
+  english: 'to work'
+traer:
+  english: 'to bring'
+usar:
+  english: 'to use'
+vender:
+  english: 'to sell'
+venir:
+  english: 'to come'
+ver:
+  english: 'to see'
+viajar:
+  english: 'to travel'
+vivir:
+  english: 'to live'
+
+ser:
+  english: 'to be'
+  presente:
+    - soy
+    - eres
+    - es
+    - somos
+    - sois
+    - son
+  preterito_indefinido:
+    - fue
+    - fuiste
+    - fui
+    - fuimos
+    - fuistais
+    - fuieron
+  preterito_imperfecto:
+    - era
+    - eras
+    - era
+    - eramos
+    - erais
+    - eran
+ir:
+  english: 'to go'
+  presente:
+    - voy
+    - vas
+    - va
+    - vamos
+    - vais
+    - van
+  preterito_indefinido:
+    - fue
+    - fuiste
+    - fui
+    - fuimos
+    - fuistais
+    - fuieron
+  preterito_imperfecto:
+    - iba
+    - ibas
+    - iba
+    - ibamos
+    - ibais
+    - iban
+reír:
+  english: 'to laugh'
+  presente:
+    - río
+    - ríes
+    - ríe
+    - reímos
+    - reís
+    - ríen
+  preterito_indefinido:
+    - reí
+    - reíste
+    - rió
+    - reímos
+    - reísteis
+    - rieron
+  preterito_imperfecto:
+    - reía
+    - reías
+    - reía
+    - reíamos
+    - reíais
+    - reían

@@ -1,0 +1,13 @@
+title: Conjugatator!
+
+sass:
+  style: compressed
+
+exclude:
+  - .jj
+  - CNAME
+  - Containerfile
+  - Gemfile
+  - Gemfile.lock
+  - pods.yaml
+  - .sass-cache

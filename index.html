@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Conjugatator!</title>
+    <link rel="stylesheet" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header>
+      <h1>¡Conjugatador!</h1>
+    </header>
+
+    <div class="output">
+      <div id="conjugation"></div>
+      <span id="infinitive"></span>
+      <span id="translation"></span>
+    </div>
+
+    <div class="controls">
+      <div class="segmented">
+        <input type="radio" id="first" name="person" value="0" checked>
+        <label for="first">First Person</label>
+        <input type="radio" id="second" name="person" value="1">
+        <label for="second">Second Person</label>
+        <input type="radio" id="third" name="person" value="2">
+        <label for="third">Third Person</label>
+      </div>
+
+      <div class="segmented">
+        <input type="radio" id="singular" name="plurality" value="singular" checked>
+        <label for="singular">Singular</label>
+        <input type="radio" id="plural" name="plurality" value="plural">
+        <label for="plural">Plural</label>
+      </div>
+
+      <div class="segmented">
+        <input type="radio" id="present" name="tense" value="presente" checked>
+        <label for="present">Presente</label>
+        <input type="radio" id="preterito_indefinido" name="tense" value="preterito_indefinido">
+        <label for="preterito_indefinido">Preterito Indefinido</label>
+        <input type="radio" id="preterito_imperfecto" name="tense" value="preterito_imperfecto">
+        <label for="preterito_imperfecto">Preterito Imperfecto</label>
+      </div>
+      <div class="segmented">
+        <input type="radio" id="present_continuous" name="tense" value="present_continuous">
+        <label for="present_continuous">Present Continuous</label>
+        <input type="radio" id="past_continuous" name="tense" value="past_continuous">
+        <label for="past_continuous">Past Continuous</label>
+        <input type="radio" id="past_participle" name="tense" value="past_participle">
+        <label for="past_participle">Past Participle</label>
+      </div>
+
+      <button id="next">Next</button>
+    </div>
+    <script src="/main.js"></script>
+  </body>
+</html>
