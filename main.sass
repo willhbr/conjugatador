@@ -3,15 +3,39 @@
 
 $slabs: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif
 
+$background-light: #e4eefd
+$background-dark: #292e42
+$color-light: #202577
+$color-dark: #cce9f4
+$aside-light: #78a3d9
+$aside-dark: #8f93b5
+$highlight-light: #ff6317
+$highlight-dark: #f7bb5e
+
+body
+  --background: #{$background-light}
+  --color: #{$color-light}
+  --aside: #{$aside-light}
+  --highlight: #{$highlight-light}
+@media(prefers-color-scheme: dark)
+  body
+    --background: #{$background-dark}
+    --color: #{$color-dark}
+    --aside: #{$aside-dark}
+    --highlight: #{$highlight-dark}
+
 header
   text-align: center
   width: 100%
   font-family: $slabs
 
 body
+  background: var(--background)
+  color: var(--color)
   font-family: system-ui, sans-serif
   max-width: 40em
   margin: auto
+  padding: 0.5em
 
 label
   padding: 1em
@@ -21,42 +45,52 @@ label
   bottom: 0
 
 #translation
-  color: grey
+  color: var(--aside)
+#translation:before
+  content: "("
+#translation:after
+  content: ")"
+
+#translation, #infinitive
+  font-size: 1.3em
 
 #conjugation
-  margin-bottom: 0.4em
-  font-size: 3em
+  font-size: 3.5em
   font-family: $slabs
 
 .output
   width: 100%
   text-align: center
 
-.segmented-control
-  display: flex
-  border: 1px solid #ccc
-  border-radius: 5px
-  overflow: hidden
-
-.segmented
-  margin-bottom: 1.5em
-
 .segmented input
   display: none
 
+.segmented
+  margin-bottom: 0.5em
+
 .segmented label
+  white-space: nowrap
   flex: 1 1 auto
+  line-height: 3em
   box-sizing: border-box
   padding: 10px 15px
   text-align: center
   cursor: pointer
-  background-color: #f0f0f0
-  border: 1px solid #ccc
+  background: var(--background)
+  border: 2px solid var(--aside)
+  border-radius: 0.3em
 
 .segmented input:checked + label
-  background-color: #007bff
-  color: white
-  border: 1px solid #007bff
+  border: 2px solid var(--highlight)
 
-.segmented label:not(:last-child)
-  border-right: none
+#next
+  margin-bottom: 1em
+  padding: 0.5em
+  background: var(--highlight)
+  border: none
+  border-radius: 0.3em
+  font-size: 1.3em
+  text-transform: uppercase
+  color: black
+.next
+  text-align: center

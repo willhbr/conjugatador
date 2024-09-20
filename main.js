@@ -1,12 +1,33 @@
 const log = m => console.log(m);
 const $ = q => document.querySelector(q);
 
-// á é í ó
+const replacing_first = (f, t, not) =>
+  (root) => {
+    let repl = root.replace(f, t);
+    let arr = Array(6).fill(repl);
+    not.forEach(i => arr[i] = root);
+    return arr;
+  };
+    
+
+const TRANSFORMS = {
+  'none': (root) => Array(6).fill(root),
+  'o/ue': replacing_first('o', 'ue', [3, 4]),
+  'ue/uie': replacing_first('ue', 'uie', [3, 4]),
+  'o/u': replacing_first('o', 'ue', [2, 5]),
+  'u/ue': replacing_first('u', 'ue', [3, 4]),
+};
+
 
 const DIOS_MIO = Array(6).fill('dios mio');
 const PRESENT_ESTAR = 'estoy estas esta estamos estais estan'.split(' ');
 const PAST_ESTAR = 'estaba estabas estaba estábamos estabais estaban'.split(' ');
 const HABER = 'he has ha hemos habéis han'.split(' ');
+const REFLEXTIVOS = 'me te se nos os se'.split(' ');
+const FUTURE_GO = 'voy vas va vamos vais van'.split(' ');
+
+const append = (roots, conjugations, refl) =>
+  conjugations.map((c, i) => (refl ? REFLEXTIVOS[i] + ' ' : '') + c.replace('$', roots[i]));
 
 const CONJES = {
   ar: {
@@ -16,14 +37,8 @@ const CONJES = {
     past_continuous: PAST_ESTAR.map(c => c + ' $ando'),
     present_continuous: PRESENT_ESTAR.map(c => c + ' $ando'),
     past_participle: HABER.map(c => c + ' $ado'),
-  },
-  ir: {
-    presente: '$o $es $e $emos $eis $en'.split(' '),
-    preterito_indefinido: '$í $iste $ó $imos $isteis $ieron'.split(' '),
-    preterito_imperfecto: '$ía $ías $ía $íamos $íais $ían'.split(' '),
-    past_continuous: PAST_ESTAR.map(c => c + ' $iendo'),
-    present_continuous: PRESENT_ESTAR.map(c => c + ' $iendo'),
-    past_participle: HABER.map(c => c + ' $ido'),
+    future_ir: FUTURE_GO.map(c => c + ' a $ar'),
+    future: '$aré $arás $ará $aremos $aréis $arán'.split(' '),
   },
   er: {
     presente: '$o $es $e $imos $is $en'.split(' '),
@@ -32,23 +47,43 @@ const CONJES = {
     past_continuous: PAST_ESTAR.map(c => c + ' $iendo'),
     present_continuous: PRESENT_ESTAR.map(c => c + ' $iendo'),
     past_participle: HABER.map(c => c + ' $ido'),
+    future_ir: FUTURE_GO.map(c => c + ' a $er'),
+    future: '$eré $erás $erá $eremos $eréis $erán'.split(' '),
+  },
+  ir: {
+    presente: '$o $es $e $emos $eis $en'.split(' '),
+    preterito_indefinido: '$í $iste $ó $imos $isteis $ieron'.split(' '),
+    preterito_imperfecto: '$ía $ías $ía $íamos $íais $ían'.split(' '),
+    past_continuous: PAST_ESTAR.map(c => c + ' $iendo'),
+    present_continuous: PRESENT_ESTAR.map(c => c + ' $iendo'),
+    past_participle: HABER.map(c => c + ' $ido'),
+    future_ir: FUTURE_GO.map(c => c + ' a $ir'),
+    future: '$iré $irás $irá $iremos $iréis $irán'.split(' '),
   },
 }
-
-const append = (root, conjugations) => conjugations.map(c => c.replace('$', root));
 
 const fill = (verb, conj) => {
   if (!conj) { conj = {}; }
   let root = verb.substr(0, verb.length - 2);
   let type = verb.substr(verb.length - 2);
+  let reflexive = type == 'se';
+  if (reflexive) {
+    type = root.substr(root.length - 2);
+    root = root.substr(0, root.length - 2);
+  }
   let tenses = CONJES[type];
   if (!tenses) { return conj; }
   for (let tense of Object.keys(tenses)) {
     if (conj[tense] === null) {
       conj[tense] = DIOS_MIO;
-    } else if (!conj[tense]) {
-      conj[tense] = append(root, CONJES[type][tense]);
-    }
+    } else {
+      let alt_root = conj[tense + '_root'] || root;
+      let transform = conj[tense + '_root_transform'];
+      let roots = (transform ? TRANSFORMS[transform] : TRANSFORMS.none)(alt_root);
+      let conjugations = append(roots, CONJES[type][tense], reflexive);
+      if (!conj[tense]) { conj[tense] = Array(6).fill(null); }
+      conj[tense] = conjugations.map((c, i) => conj[tense][i] || c);
+    } 
   }
   return conj;
 };
@@ -56,28 +91,35 @@ const fill = (verb, conj) => {
 const to_idx = (person, plural) => +person + (plural == 'singular' ? 0 : 3);
 
 const loaded = data => {
-  for (let word of Object.keys(data)) {
+  let words = Object.keys(data);
+  for (let word of words) {
     data[word] = fill(word, data[word]);
   }
-  let word_index = 0;
+  let current_word;
   let update = () => {
     let person = $('input[name="person"]:checked').value;
     let plurality = $('input[name="plurality"]:checked').value;
     let idx = to_idx(person, plurality);
     let tense = $('input[name="tense"]:checked').value;
-    let word = Object.keys(data)[word_index];
-    let conjugated = data[word][tense][idx];
-    let translated = data[word].english;
+    let conjugated = data[current_word][tense][idx];
+    let translated = data[current_word].english;
     $('#conjugation').innerText = conjugated;
     $('#translation').innerText = translated;
-    $('#infinitive').innerText = word;
+    $('#infinitive').innerText = current_word;
   };
-  $('#next').addEventListener('click', () => {
-    word_index += 1
+  window.set_word = (w) => {
+    current_word = w;
     update();
-  });
-  Array.from(document.querySelectorAll('input')).forEach(input => input.addEventListener('change', () => update()));
-  update();
+  }
+  let randomise = () => {
+    let idx = Math.floor(Math.random() * words.length);
+    current_word = words[idx];
+    update();
+  };
+  $('#next').addEventListener('click', randomise);
+  Array.from(document.querySelectorAll('input')).forEach(input =>
+    input.addEventListener('change', update));
+  randomise();
 };
 
 window.addEventListener('load', () => {

@@ -1,3 +1,5 @@
+llamarse:
+  english: 'to call oneself'
 abrir:
   english: 'to open'
 aprender:
@@ -48,6 +50,8 @@ disfrutar:
   english: 'to enjoy'
 dormir:
   english: 'to sleep'
+  presente_root_transform: o/ue
+  preterito_indefinido_root_transform: o/u
 encontrar:
   english: 'to find'
 enseñar:
@@ -70,6 +74,7 @@ invitar:
   english: 'to invite'
 jugar:
   english: 'to play'
+  presente_root_transform: u/ue
 leer:
   english: 'to read'
 limpiar:
@@ -92,10 +97,17 @@ pescar:
   english: 'to fish'
 poder:
   english: 'to be able/can'
+  presente_root_transform: o/ue
 preguntar:
   english: 'to ask'
 quedar:
   english: 'to stay/remain'
+querer:
+  english: 'to want'
+  presente_root_transform: ue/uie
+  preterito_indefinido:
+    0: quise
+    2: quiso
 saber:
   english: 'to know - facts/information'
 salir:
