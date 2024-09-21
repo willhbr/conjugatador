@@ -1,0 +1,21 @@
+- id: past_participle
+  name: Past Participle
+- id: preterito_imperfecto
+  name: Preterito Imperfecto
+- id: past_continuous
+  name: Past Continuous
+- id: preterito_indefinido
+  name: Preterito Indefinido
+- id: presente
+  name: Presente
+  checked: true
+- id: present_continuous
+  name: Present Continuous
+- id: future_continuous
+  name: Future Continuous
+- id: future_ir
+  name: Future Ir
+- id: future
+  name: Future
+- id: future_perfect
+  name: Future Perfect

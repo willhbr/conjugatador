@@ -33,7 +33,9 @@ const TRANSFORMS = {
 const DIOS_MIO = Array(6).fill('dios mio');
 const PRESENT_ESTAR = 'estoy estas esta estamos estais estan'.split(' ');
 const PAST_ESTAR = 'estaba estabas estaba estábamos estabais estaban'.split(' ');
-const HABER = 'he has ha hemos habéis han'.split(' ');
+const FUTURE_ESTAR = 'estaré estarás estará estaremos estaréis estarán'.split(' ');
+const HABER_PAST = 'he has ha hemos habéis han'.split(' ');
+const HABER_FUTURE = 'habré habrás habrá habremos habréis habrán'.split(' ');
 const REFLEXTIVOS = 'me te se nos os se'.split(' ');
 const FUTURE_GO = 'voy vas va vamos vais van'.split(' ');
 
@@ -47,9 +49,11 @@ const CONJES = {
     preterito_imperfecto: '$aba $abas $aba $ábamos $abais $aban'.split(' '),
     past_continuous: PAST_ESTAR.map(c => c + ' $ando'),
     present_continuous: PRESENT_ESTAR.map(c => c + ' $ando'),
-    past_participle: HABER.map(c => c + ' $ado'),
+    future_continuous: FUTURE_ESTAR.map(c => c + ' $ando'),
+    past_participle: HABER_PAST.map(c => c + ' $ado'),
     future_ir: FUTURE_GO.map(c => c + ' a $ar'),
     future: '$aré $arás $ará $aremos $aréis $arán'.split(' '),
+    future_perfect: HABER_FUTURE.map(c => c + ' $ado'),
   },
   er: {
     presente: '$o $es $e $imos $is $en'.split(' '),
@@ -57,9 +61,11 @@ const CONJES = {
     preterito_imperfecto: '$ía $ías $ía $íamos $íais $ían'.split(' '),
     past_continuous: PAST_ESTAR.map(c => c + ' $iendo'),
     present_continuous: PRESENT_ESTAR.map(c => c + ' $iendo'),
-    past_participle: HABER.map(c => c + ' $ido'),
+    future_continuous: FUTURE_ESTAR.map(c => c + ' $iendo'),
+    past_participle: HABER_PAST.map(c => c + ' $ido'),
     future_ir: FUTURE_GO.map(c => c + ' a $er'),
     future: '$eré $erás $erá $eremos $eréis $erán'.split(' '),
+    future_perfect: HABER_FUTURE.map(c => c + ' $ido'),
   },
   ir: {
     presente: '$o $es $e $emos $eis $en'.split(' '),
@@ -67,9 +73,11 @@ const CONJES = {
     preterito_imperfecto: '$ía $ías $ía $íamos $íais $ían'.split(' '),
     past_continuous: PAST_ESTAR.map(c => c + ' $iendo'),
     present_continuous: PRESENT_ESTAR.map(c => c + ' $iendo'),
-    past_participle: HABER.map(c => c + ' $ido'),
+    future_continuous: FUTURE_ESTAR.map(c => c + ' $iendo'),
+    past_participle: HABER_PAST.map(c => c + ' $ido'),
     future_ir: FUTURE_GO.map(c => c + ' a $ir'),
     future: '$iré $irás $irá $iremos $iréis $irán'.split(' '),
+    future_perfect: HABER_FUTURE.map(c => c + ' $ido'),
   },
 }
 
@@ -103,8 +111,6 @@ const fill = (verb, conj) => {
   return conj;
 };
 
-const to_idx = (person, plural) => +person + (plural == 'singular' ? 0 : 3);
-
 const loaded = data => {
   window.conjugations = data;
   let current_word;
@@ -114,7 +120,7 @@ const loaded = data => {
     }
     let person = $('input[name="person"]:checked').value;
     let plurality = $('input[name="plurality"]:checked').value;
-    let idx = to_idx(person, plurality);
+    let idx = +person + (plurality == 'singular' ? 0 : 3);
     let tense = $('input[name="tense"]:checked').value;
     let conjugated = data[current_word][tense][idx];
     let translated = data[current_word].english;

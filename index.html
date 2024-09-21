@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html>
   <head>
@@ -12,7 +14,7 @@
 
     <div class="output">
       <div id="conjugation"></div>
-      <span id="infinitive"></span>
+      <span id="infinitive">conjugaciones se están cargando</span>
       <span id="translation"></span>
     </div>
 
@@ -24,9 +26,6 @@
         <label for="second">Second</label>
         <input type="radio" id="third" name="person" value="2">
         <label for="third">Third</label>
-      </div>
-
-      <div class="segmented">
         <input type="radio" id="singular" name="plurality" value="singular" checked>
         <label for="singular">Singular</label>
         <input type="radio" id="plural" name="plurality" value="plural">
@@ -34,22 +33,10 @@
       </div>
 
       <div class="segmented">
-        <input type="radio" id="present" name="tense" value="presente" checked>
-        <label for="present">Presente</label>
-        <input type="radio" id="preterito_indefinido" name="tense" value="preterito_indefinido">
-        <label for="preterito_indefinido">Preterito Indefinido</label>
-        <input type="radio" id="preterito_imperfecto" name="tense" value="preterito_imperfecto">
-        <label for="preterito_imperfecto">Preterito Imperfecto</label>
-        <input type="radio" id="present_continuous" name="tense" value="present_continuous">
-        <label for="present_continuous">Present Continuous</label>
-        <input type="radio" id="past_continuous" name="tense" value="past_continuous">
-        <label for="past_continuous">Past Continuous</label>
-        <input type="radio" id="past_participle" name="tense" value="past_participle">
-        <label for="past_participle">Past Participle</label>
-        <input type="radio" id="future_ir" name="tense" value="future_ir">
-        <label for="future_ir">Future Ir</label>
-        <input type="radio" id="future" name="tense" value="future">
-        <label for="future">Future</label>
+        {% for tense in site.data.tenses %}
+          <input type="radio" id="{{ tense.id }}" name="tense" value="{{ tense.id }}"{% if tense.checked %} checked{% endif %}>
+          <label for="{{ tense.id }}">{{ tense.name }}</label>
+        {% endfor %}
       </div>
 
       <div class="next"><button id="next">¡otro!</button></div>
