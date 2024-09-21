@@ -36,6 +36,7 @@ const PAST_ESTAR = 'estaba estabas estaba estábamos estabais estaban'.split(' '
 const FUTURE_ESTAR = 'estaré estarás estará estaremos estaréis estarán'.split(' ');
 const HABER_PAST = 'he has ha hemos habéis han'.split(' ');
 const HABER_FUTURE = 'habré habrás habrá habremos habréis habrán'.split(' ');
+const HABER_CONDITIONAL = 'habría habrías habría habríamos habríais habrían'.split(' ');
 const REFLEXTIVOS = 'me te se nos os se'.split(' ');
 const FUTURE_GO = 'voy vas va vamos vais van'.split(' ');
 
@@ -54,6 +55,8 @@ const CONJES = {
     future_ir: FUTURE_GO.map(c => c + ' a $ar'),
     future: '$aré $arás $ará $aremos $aréis $arán'.split(' '),
     future_perfect: HABER_FUTURE.map(c => c + ' $ado'),
+    condicional_perfecto: HABER_CONDITIONAL.map(c => c + ' $ado'),
+    condicional_simple: '$aría $arías $aría $aríamos $aríais $arían'.split(' '),
   },
   er: {
     presente: '$o $es $e $imos $is $en'.split(' '),
@@ -66,6 +69,8 @@ const CONJES = {
     future_ir: FUTURE_GO.map(c => c + ' a $er'),
     future: '$eré $erás $erá $eremos $eréis $erán'.split(' '),
     future_perfect: HABER_FUTURE.map(c => c + ' $ido'),
+    condicional_perfecto: HABER_CONDITIONAL.map(c => c + ' $ido'),
+    condicional_simple: '$ería $erías $ería $eríamos $eríais $erían'.split(' '),
   },
   ir: {
     presente: '$o $es $e $emos $eis $en'.split(' '),
@@ -78,6 +83,8 @@ const CONJES = {
     future_ir: FUTURE_GO.map(c => c + ' a $ir'),
     future: '$iré $irás $irá $iremos $iréis $irán'.split(' '),
     future_perfect: HABER_FUTURE.map(c => c + ' $ido'),
+    condicional_perfecto: HABER_CONDITIONAL.map(c => c + ' $ido'),
+    condicional_simple: '$iría $irías $iría $iríamos $iríais $irían'.split(' '),
   },
 }
 

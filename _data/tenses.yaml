@@ -6,6 +6,9 @@
   name: Past Continuous
 - id: preterito_indefinido
   name: Preterito Indefinido
+# I would have X
+- id: condicional_perfecto
+  name: Condicional Perfecto
 - id: presente
   name: Presente
   checked: true
@@ -19,3 +22,6 @@
   name: Future
 - id: future_perfect
   name: Future Perfect
+# I would X
+- id: condicional_simple
+  name: Condicional Simple
