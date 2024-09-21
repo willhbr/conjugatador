@@ -81,8 +81,10 @@ label
   border: 2px solid var(--aside)
   border-radius: 0.3em
 
-.segmented input:checked + label
+.segmented input:checked + label, .segmented input + label:hover
   border: 2px solid var(--highlight)
+.segmented input:checked + label
+  color: var(--highlight)
 
 #next
   margin-bottom: 1em

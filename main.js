@@ -152,5 +152,5 @@ const loaded = data => {
 };
 
 window.addEventListener('load', () => {
-  fetch("conjugations.json").then(r => r.json()).then(loaded);
+  fetch("conjugations.json", {cache: "force-cache"}).then(r => r.json()).then(loaded);
 });
