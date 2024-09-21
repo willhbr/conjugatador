@@ -176,6 +176,14 @@ venir:
     - vengo
 ver:
   english: 'to see'
+  presente:
+    0: veo
+    3: vemos
+    4: veis
+  preterito_indefinido_root: v
+  preterito_indefinido: v
+    - vi
+  preterito_imperfecto_root: ve
 viajar:
   english: 'to travel'
 vivir:

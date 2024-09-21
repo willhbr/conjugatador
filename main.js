@@ -1,5 +1,6 @@
 const log = m => console.log(m);
 const $ = q => document.querySelector(q);
+const $$ = q => document.querySelectorAll(q);
 
 const replacing_first = (f, t, not) =>
   (root) => {
@@ -118,6 +119,11 @@ const fill = (verb, conj) => {
   return conj;
 };
 
+const select_random = s => {
+  let arr = Array.from($$('input[name="' + s + '"]'));
+  arr[Math.floor(Math.random() * arr.length)].checked = true;
+};
+
 const loaded = data => {
   window.conjugations = data;
   let current_word;
@@ -143,9 +149,12 @@ const loaded = data => {
   let randomise = () => {
     let idx = Math.floor(Math.random() * words.length);
     current_word = words[idx];
+    select_random('person');
+    select_random('plurality');
+    select_random('tense');
     update();
   };
-  $('#next').addEventListener('click', randomise);
+  $('.output').addEventListener('click', randomise);
   Array.from(document.querySelectorAll('input')).forEach(input =>
     input.addEventListener('change', update));
   randomise();
